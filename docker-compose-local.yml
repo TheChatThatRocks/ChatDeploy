@@ -24,11 +24,13 @@ services:
 
   prometheus-metrics:
     build: prometheus
+    image: prometheus
     ports:
       - "9090:9090"
 
   rabbitmq-broker:
     build: rabbitmq
+    image: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -36,15 +38,17 @@ services:
 
   encryption:
     build: ../ChatEncryptionAPI
+    iamge: encryption
     ports:
       - "7799:7799"
 
   backend-api:
     build: ../ChatBackendAPI
+    iamge: backend-api
     ports:
       - "7070:7070"
       - "8080:8080"
-    depends_on:
+    links:
       - rabbitmq-broker
       - encryption
       - postgresql-database
