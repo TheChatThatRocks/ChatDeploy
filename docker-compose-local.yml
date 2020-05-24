@@ -43,7 +43,7 @@ services:
 
   encryption:
     build: ../ChatEncryptionAPI
-    iamge: encryption
+    image: encryption
     ports:
       - "7799:7799"
 
