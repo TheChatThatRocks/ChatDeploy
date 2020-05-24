@@ -1,7 +1,7 @@
 version: '3'
 services:
-  postgresql-database:
-    container_name: postgresql-database
+  postgresql:
+    container_name: postgresql
     image: postgres:12.2
     ports:
       - "5432:5432"
@@ -14,21 +14,22 @@ services:
       mode: replicated
       replicas: 1
 
-  mongodb-database:
-    container_name: mongodb-database
+  mongodb:
+    container_name: mongodb
     image: mongo:4.2.5
     ports:
       - "27017:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=mongoadmin
       - MONGO_INITDB_ROOT_PASSWORD=easypassword
-      - MONGO_INITDB_DATABASE=mymongodb
+      - MONGO_INITDB_DATABASE=mymongodb jdbc:postgresql://postgresql-database:5432/postgres
+
     deploy: 
       mode: replicated
       replicas: 1
 
-  grafana-dashboard:
-    container_name: grafana-dashboard 
+  grafana:
+    container_name: grafana 
     image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:grafana
     ports:
       - "3000:3000"
@@ -38,8 +39,8 @@ services:
       mode: replicated
       replicas: 1
 
-  prometheus-metrics:
-    container_name: prometheus-metrics
+  prometheus:
+    container_name: prometheus
     image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:prometheus
     ports:
       - "9090:9090"
@@ -49,8 +50,8 @@ services:
       mode: replicated
       replicas: 1
 
-  rabbitmq-broker:
-    container_name: rabbitmq-broker
+  rabbitmq:
+    container_name: rabbitmq
     build: rabbitmq
     image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:rabbitmq
     ports:
@@ -70,17 +71,17 @@ services:
       mode: replicated
       replicas: 1
 
-  backend-api:
-    container_name: backend-api
+  backend:
+    container_name: backend
     image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:backend-api
     ports:
       - "7070:7070"
       - "8080:8080"
     links:
-      - rabbitmq-broker
+      - rabbitmq
       - encryption
-      - postgresql-database
-      - mongodb-database
+      - postgresql
+      - mongodb
     deploy: 
       mode: replicated
       replicas: 1
@@ -88,7 +89,7 @@ services:
         constraints:
           - "node.role==manager"
       restart_policy:
-        condition: any
+        condition: none
         delay: 1s
         max_attempts: 5
         window: 1s
