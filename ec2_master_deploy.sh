@@ -17,6 +17,7 @@ sudo $(aws ecr get-login --region us-east-1 | sed -e 's/-e none//g')
 # Build images and upload to ECR
 #./push_images.sh
 
+docker service rm chat-stack_backend-api
 sudo docker stack deploy -c docker-compose-aws.yml --with-registry-auth chat-stack
 
 # docker stack ps chat-stack
