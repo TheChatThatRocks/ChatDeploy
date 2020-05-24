@@ -45,7 +45,7 @@ services:
       - "7799:7799"
 
   backend-api:
-    image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:backendapi
+    image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:backend-api
     ports:
       - "7070:7070"
       - "8080:8080"
