@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: /home/abel/kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mongodb-database
+  name: mongodb-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mongodb-database
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: /home/abel/kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mongodb-database
+    spec:
+      containers:
+      - env:
+        - name: MONGO_INITDB_DATABASE
+          value: mymongodb
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          value: easypassword
+        - name: MONGO_INITDB_ROOT_USERNAME
+          value: mongoadmin
+        image: thechatthatrocksacr.azurecr.io/mongo:v1
+        imagePullPolicy: ""
+        name: mongodb-database
+        ports:
+        - containerPort: 27017
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

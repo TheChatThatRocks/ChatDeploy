@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: /home/abel/kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: prometheus-metrics
+  name: prometheus-metrics
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: prometheus-metrics
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: /home/abel/kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: prometheus-metrics
+    spec:
+      containers:
+      - image: thechatthatrocksacr.azurecr.io/prometheus:v1
+        imagePullPolicy: ""
+        name: prometheus-metrics
+        ports:
+        - containerPort: 9090
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

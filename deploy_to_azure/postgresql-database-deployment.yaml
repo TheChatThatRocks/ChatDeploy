@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: /home/abel/kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: postgresql-database
+  name: postgresql-database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: postgresql-database
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: /home/abel/kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: postgresql-database
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_PASSWORD
+          value: easypassword
+        - name: POSTGRES_USER
+          value: postgres
+        image: thechatthatrocksacr.azurecr.io/postgres:v1
+        imagePullPolicy: ""
+        name: postgresql-database
+        ports:
+        - containerPort: 5432
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: /home/abel/kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: rabbitmq-broker
+  name: rabbitmq-broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: rabbitmq-broker
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: /home/abel/kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: rabbitmq-broker
+    spec:
+      containers:
+      - image: thechatthatrocksacr.azurecr.io/rabbitmq:v1
+        imagePullPolicy: ""
+        name: rabbitmq-broker
+        ports:
+        - containerPort: 5672
+        - containerPort: 15672
+        - containerPort: 15692
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
