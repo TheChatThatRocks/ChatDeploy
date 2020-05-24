@@ -80,6 +80,6 @@ services:
           - "node.role==manager"
       restart_policy:
         condition: any
-        delay: 5s
+        delay: 1s
         max_attempts: 5
-        window: 20s
+        window: 1s
