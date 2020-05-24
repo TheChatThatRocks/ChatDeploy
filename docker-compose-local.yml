@@ -21,12 +21,17 @@ services:
     image: grafana/grafana:7.0.0-beta3
     ports:
       - "3000:3000"
+    links:
+      - prometheus-metrics
 
   prometheus-metrics:
-    build: prometheus
-    image: prometheus
+    image: prom/prometheus
     ports:
       - "9090:9090"
+    volumes:
+      - "prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+    links: 
+      - backend-api
 
   rabbitmq-broker:
     build: rabbitmq
@@ -44,7 +49,7 @@ services:
 
   backend-api:
     build: ../ChatBackendAPI
-    iamge: backend-api
+    image: backend-api
     ports:
       - "7070:7070"
       - "8080:8080"
