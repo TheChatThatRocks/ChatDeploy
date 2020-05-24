@@ -18,15 +18,14 @@ services:
       - MONGO_INITDB_DATABASE=mymongodb
 
   grafana-dashboard:
-    image: grafana/grafana:7.0.0-beta3
+    image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:grafana
     ports:
       - "3000:3000"
     links:
       - prometheus-metrics
 
   prometheus-metrics:
-    build: prometheus
-    image: prometheus
+    image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:prometheus
     ports:
       - "9090:9090"
     links: 
@@ -34,21 +33,19 @@ services:
 
   rabbitmq-broker:
     build: rabbitmq
-    image: rabbitmq
+    image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
       - "15692:15692"
 
   encryption:
-    build: ../ChatEncryptionAPI
-    image: encryption
+    image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:encryption
     ports:
       - "7799:7799"
 
   backend-api:
-    build: ../ChatBackendAPI
-    image: backend-api
+    image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:backendapi
     ports:
       - "7070:7070"
       - "8080:8080"
