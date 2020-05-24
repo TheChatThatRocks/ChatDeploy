@@ -1,6 +1,7 @@
 version: '3'
 services:
   postgresql-database:
+    container_name: postgresql-database
     image: postgres:12.2
     ports:
       - "5432:5432"
@@ -12,6 +13,7 @@ services:
       replicas: 1
 
   mongodb-database:
+    container_name: mongodb-database
     image: mongo:4.2.5
     ports:
       - "27017:27017"
@@ -24,6 +26,7 @@ services:
       replicas: 1
 
   grafana-dashboard:
+    container_name: grafana-dashboard 
     image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:grafana
     ports:
       - "3000:3000"
@@ -34,6 +37,7 @@ services:
       replicas: 1
 
   prometheus-metrics:
+    container_name: prometheus-metrics
     image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:prometheus
     ports:
       - "9090:9090"
@@ -44,6 +48,7 @@ services:
       replicas: 1
 
   rabbitmq-broker:
+    container_name: rabbitmq-broker
     build: rabbitmq
     image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:rabbitmq
     ports:
@@ -55,6 +60,7 @@ services:
       replicas: 1
 
   encryption:
+    container_name: encryption
     image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:encryption
     ports:
       - "7799:7799"
@@ -63,6 +69,7 @@ services:
       replicas: 1
 
   backend-api:
+    container_name: backend-api
     image: 272952936633.dkr.ecr.us-east-1.amazonaws.com/chat-repo:backend-api
     ports:
       - "7070:7070"
