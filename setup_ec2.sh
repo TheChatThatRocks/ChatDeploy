@@ -25,5 +25,7 @@ sudo add-apt-repository \
 sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
 
-# Uncomment for slave node
+# Worker node
 docker swarm join --advertise-addr $(curl http://169.254.169.254/latest/meta-data/public-ipv4) --token SWMTKN-1-5gkiv883t62apgt9keqrjxcv0ynxq61g47g6kbfbzm7t3cil3n-75ur2vjmai5viihwzo41ubo8c 172.31.73.104:2377
+# Master 
+#docker swarm init
