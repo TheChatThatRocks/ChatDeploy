@@ -17,7 +17,7 @@ az acr list --resource-group thechatthatrocks_dev --query "[].{acrLoginServer:lo
 az acr login --name thechatthatrocksacr
 
 # Mediante el docker compose crear imagenes
-No recuerdo el comando
+docker-compose build
 
 # Hace tag de todas las imágenes
 docker tag prometheus thechatthatrocksacr.azurecr.io/prometheus:v1
