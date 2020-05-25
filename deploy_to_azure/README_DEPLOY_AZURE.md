@@ -17,7 +17,7 @@ az acr list --resource-group thechatthatrocks_dev --query "[].{acrLoginServer:lo
 az acr login --name thechatthatrocksacr
 
 # Mediante el docker compose crear imagenes
-docker-compose build
+docker-compose -f docker-compose-local.yml build
 
 # Hace tag de todas las imágenes
 docker tag prometheus thechatthatrocksacr.azurecr.io/prometheus:v1
@@ -64,6 +64,9 @@ kubectl apply -f backend-api-deployment.yaml,mongodb-database-service.yaml,backe
 # Se comprueba si los servicios están ya activos
 kubectl get service grafana-dashboard-load-balancer --watch
 kubectl get service backend-api-service-load-balancer --watch
+
+# Obtener relacion de pods a nodos
+kubectl get pods -o wide
 
 ##################
 ##################
