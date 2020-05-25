@@ -20,6 +20,13 @@ services:
   grafana-dashboard:
     build: grafana
     image: grafana
+    environment:
+      - GF_SERVER_CERT_FILE=/etc/grafana/certs/server.crt
+      - GF_SERVER_CERT_KEY=/etc/grafana/certs/server.key
+      - GF_SERVER_PROTOCOL=https
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SECURITY_ADMIN_USER=chat
+      - GF_SECURITY_ADMIN_PASSWORD=chat
     ports:
       - "3000:3000"
     links:
