@@ -18,7 +18,8 @@ services:
       - MONGO_INITDB_DATABASE=mymongodb
 
   grafana-dashboard:
-    image: grafana/grafana:7.0.0-beta3
+    build: grafana
+    image: grafana
     ports:
       - "3000:3000"
     links:
@@ -50,7 +51,6 @@ services:
     build: ../ChatBackendAPI
     image: backend-api
     ports:
-      - "7070:7070"
       - "8080:8080"
     links:
       - rabbitmq-broker
