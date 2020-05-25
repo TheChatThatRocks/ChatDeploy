@@ -44,7 +44,7 @@ services:
     build: ../ChatEncryptionAPI
     image: encryption
     ports:
-      - "7799:7799"
+      - "7799:8080"
 
   backend-api:
     build: ../ChatBackendAPI
