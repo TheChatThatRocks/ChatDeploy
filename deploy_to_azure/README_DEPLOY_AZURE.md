@@ -22,13 +22,13 @@ docker-compose -f docker-compose-local.yml build
 # Hace tag de todas las imágenes
 docker tag prometheus thechatthatrocksacr.azurecr.io/prometheus:v1
 
-docker tag backend-api thechatthatrocksacr.azurecr.io/backend-api:v1
+docker tag backend-api thechatthatrocksacr.azurecr.io/backend-api:v4
 
 docker tag encryption thechatthatrocksacr.azurecr.io/encryption:v1
 
 docker tag rabbitmq:latest thechatthatrocksacr.azurecr.io/rabbitmq:v1
 
-docker tag grafana/grafana:7.0.0-beta3 thechatthatrocksacr.azurecr.io/grafana:v1
+docker tag grafana:latest thechatthatrocksacr.azurecr.io/grafana:v2
 
 docker tag postgres:12.2 thechatthatrocksacr.azurecr.io/postgres:v1
 
@@ -37,13 +37,13 @@ docker tag mongo:4.2.5 thechatthatrocksacr.azurecr.io/mongo:v1
 # Hacer push de todas las imagenes
 docker push thechatthatrocksacr.azurecr.io/prometheus:v1
 
-docker push thechatthatrocksacr.azurecr.io/backend-api:v1
+docker push thechatthatrocksacr.azurecr.io/backend-api:v4
 
 docker push thechatthatrocksacr.azurecr.io/encryption:v1
 
 docker push thechatthatrocksacr.azurecr.io/rabbitmq:v1
 
-docker push thechatthatrocksacr.azurecr.io/grafana:v1
+docker push thechatthatrocksacr.azurecr.io/grafana:v2
 
 docker push thechatthatrocksacr.azurecr.io/postgres:v1
 
