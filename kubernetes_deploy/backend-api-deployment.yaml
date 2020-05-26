@@ -24,7 +24,7 @@ spec:
         io.kompose.service: backend-api
     spec:
       containers:
-      - image: thechatthatrocksacr.azurecr.io/backend-api:v1
+      - image: thechatthatrocksacr.azurecr.io/backend-api:v4
         imagePullPolicy: ""
         name: backend-api
         ports:

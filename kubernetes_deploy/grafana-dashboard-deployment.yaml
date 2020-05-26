@@ -24,7 +24,20 @@ spec:
         io.kompose.service: grafana-dashboard
     spec:
       containers:
-      - image: thechatthatrocksacr.azurecr.io/grafana:v1
+      - env:
+        - name: GF_SECURITY_ADMIN_PASSWORD
+          value: chat
+        - name: GF_SECURITY_ADMIN_USER
+          value: chat
+        - name: GF_SERVER_CERT_FILE
+          value: /etc/grafana/certs/server.crt
+        - name: GF_SERVER_CERT_KEY
+          value: /etc/grafana/certs/server.key
+        - name: GF_SERVER_PROTOCOL
+          value: https
+        - name: GF_USERS_ALLOW_SIGN_UP
+          value: "false"
+        image: thechatthatrocksacr.azurecr.io/grafana:v2
         imagePullPolicy: ""
         name: grafana-dashboard
         ports:
